@@ -3,11 +3,12 @@ from typing import Callable
 
 import functools
 
-def cache(func):
+
+def cache(func: Callable) -> Callable:
     cache_storage = {}
 
     @functools.wraps(func)
-    def wrapper(*args, **kwargs):
+    def wrapper(*args, **kwargs) -> Callable:
         key = (args, frozenset(kwargs.items()))
         if key in cache_storage:
             print("Getting from cache")
